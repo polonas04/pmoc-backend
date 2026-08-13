@@ -1,35 +1,43 @@
 package com.pi.unileste.pmoc.Models;
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 
-//@Entity
+@Entity
 public class Endereco {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	@NotNull
 	private String cep;
 	@NotNull
 	private Integer numero;
-	@NotNull
-	private String cpf_Pessoa;
+	@OneToOne
+	@JoinColumn(name = "cpf_pessoa")
+	private Pessoa pessoa;
 	@NotNull
 	private String cidade;
 	@NotNull
 	private String estado;
-
-	public Endereco(Integer id, @NotNull String cep, @NotNull Integer numero, @NotNull String cpf_Pessoa,
+	
+	public Endereco(@NotNull String cep, @NotNull Integer numero, Pessoa pessoa,
 			@NotNull String cidade, @NotNull String estado) {
 		super();
-		this.id = id;
 		this.cep = cep;
 		this.numero = numero;
-		this.cpf_Pessoa = cpf_Pessoa;
+		this.pessoa = pessoa;
 		this.cidade = cidade;
 		this.estado = estado;
+	}
+	
+	public Endereco() {
+		
 	}
 
 	public Integer getId() {
@@ -56,12 +64,12 @@ public class Endereco {
 		this.numero = numero;
 	}
 
-	public String getCpf_Pessoa() {
-		return cpf_Pessoa;
+	public Pessoa getPessoa() {
+		return this.pessoa;
 	}
 
-	public void setCpf_Pessoa(String cpf_Pessoa) {
-		this.cpf_Pessoa = cpf_Pessoa;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	public String getCidade() {
@@ -79,5 +87,9 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-
+	
+	
+	
+	
+	
 }

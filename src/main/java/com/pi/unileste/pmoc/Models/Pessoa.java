@@ -1,8 +1,6 @@
 package com.pi.unileste.pmoc.Models;
 
 import java.time.LocalDate;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
@@ -14,24 +12,23 @@ public class Pessoa {
 	@Id
 	@NotNull
 	private String cpf;
-	@NotBlank
+	@NotNull
 	private String nome;
 	@NotBlank
 	private String telefone;
 	@NotNull
-	@Column(name ="dataNasc")
-	private LocalDate dataNasc;
+	private LocalDate data_nasc;
 	
 	public Pessoa() {
 		
 	}
-	
+
 	public Pessoa(@NotNull String cpf, @NotBlank String nome, @NotBlank String telefone,
 			@NotNull LocalDate dataNasc) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.telefone = telefone;
-		this.dataNasc = dataNasc;
+		this.data_nasc = dataNasc;
 	}
 
 	public String getCpf() {
@@ -59,11 +56,11 @@ public class Pessoa {
 	}
 
 	public LocalDate getDataNasc() {
-		return dataNasc;
+		return data_nasc;
 	}
 
-	public void setDataNasc(LocalDate dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDataNasc(LocalDate data_nasc) {
+		this.data_nasc = data_nasc;
 	}
 
 }

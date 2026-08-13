@@ -1,5 +1,6 @@
 package com.pi.unileste.pmoc.PessoaService;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,10 @@ public class PessoaService {
 		}
 		
 		return null;
+	}
+
+	public List<Pessoa> listar_pessoas() {
+		return pessoaRepository.findAll();
 	}
 	
 }

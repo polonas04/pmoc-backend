@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pi.unileste.pmoc.Models.Pessoa;
 import com.pi.unileste.pmoc.PessoaService.PessoaService;
 
+@CrossOrigin(origins = "http://localhost:8100")
 @RestController
 @RequestMapping("api/pessoa")
 public class PessoaController {
@@ -21,12 +23,9 @@ public class PessoaController {
 	private PessoaService pessoaService;
 	
 	@GetMapping
-	public ResponseEntity<List<String>> listar_Pessoas(){
-		List<String> pessoas = new ArrayList<>();
-		
-		pessoas.add("Joao");
-		pessoas.add("Maria");
-		
+	public ResponseEntity<List<Pessoa>> listar_Pessoas(){
+		List<Pessoa> pessoas = pessoaService.listar_pessoas();
+
 		return ResponseEntity.ok().body(pessoas);
 	}
 	
